@@ -14,28 +14,35 @@ public class IntcodeReader {
 	
 	public void read() {
 		
-		while(true) {
+		boolean flag = true;
+		
+		while(flag){
+			
+			opcode = code[index];
+			
 			switch (opcode) {
 			
 				case 1: {
-					int value = (code[index + 1]) + code[index + 2];
-					code[index + 3] = value;
+					int value = (code[code[index + 1]]) + code[code[index + 2]];
+					code[code[index + 3]] = value;
 				}
 				break;
 				
 				case 2: {
-					int value = (code[index + 1]) * code[index + 2];
-					code[index + 3] = value;
+					int value = (code[code[index + 1]]) * code[code[index + 2]];
+					code[code[index + 3]] = value;
 					
 				}
 				break;
 				
-//TODO				case 99: {
+				case 99: {
+					flag = false;
 					
 				}
 				break;
 				
-//TODO				default: {
+				default: {
+					System.out.println("Unknown opcade: " + opcode + ". Program terminating");
 					
 				}
 			
